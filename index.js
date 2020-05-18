@@ -6,6 +6,8 @@ const argvObj = process.argv.splice(2).reduce((obj, cur) => {
     obj[item[0]] = item[1];
     return obj
 }, {});
+console.log("process.argv", process.argv);
+console.log("argvObj", argvObj);
 const publicPath = path.resolve(argvObj.publicPath);
 const client = new OSS({
     region: argvObj.region,
