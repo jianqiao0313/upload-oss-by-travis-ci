@@ -61,6 +61,9 @@ async function uploadFileToOss(_path, fileStream) {
         //object-name可以自定义为文件名（例如file.txt）或目录（例如abc/test/file.txt）的形式，实现将文件上传至当前Bucket或Bucket下的指定目录。
         let result = await client.put(_path, fileStream);
         console.log(`[${++uploadProgress}|${totalFile}]上传文件：${_path},状态码：${result.res.statusCode}，上传结果：${result.res.statusMessage}`);
+        if(uploadProgress === totalFile){
+            process.exit(0);
+        }
     } catch (e) {
         console.log(`上传文件报错：${e},${_path}`);
     }
@@ -84,7 +87,5 @@ function readDir(proPath = '') {
     })
 }
 // go
-(async _=>{
-    await list();
-    process.exit(0);
-})()
+list();
+
