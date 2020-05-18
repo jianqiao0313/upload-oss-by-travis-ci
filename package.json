@@ -1,0 +1,22 @@
+{
+  "name": "oss",
+  "version": "1.0.0",
+  "description": "ali-oss",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianqiao0313/upload-oss-by-travis-ci.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jianqiao0313/upload-oss-by-travis-ci/issues"
+  },
+  "homepage": "https://github.com/jianqiao0313/upload-oss-by-travis-ci#readme",
+  "dependencies": {
+    "ali-oss": "^6.2.1"
+  }
+}
