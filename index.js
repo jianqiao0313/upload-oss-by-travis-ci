@@ -84,4 +84,5 @@ function readDir(proPath = '') {
     })
 }
 // readDir();
-list();
+await list();
+process.exit(0);
