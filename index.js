@@ -83,6 +83,8 @@ function readDir(proPath = '') {
         }
     })
 }
-// readDir();
-await list();
-process.exit(0);
+// go
+(async _=>{
+    await list();
+    process.exit(0);
+})()
