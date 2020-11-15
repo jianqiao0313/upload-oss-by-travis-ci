@@ -44,14 +44,26 @@ async function list() {
     }
 }
 async function deleteMulti(arr) {
+    let splitArr = [];
+    for (let i = 0; i < Math.ceil(arr.length / 1000); i++) {
+        splitArr.push(arr.slice(i * 1000, (i + 1) * 1000));
+    }
     try {
-        let result = await client.deleteMulti(arr, {
-            quiet: true
-        });
-        console.log(`删除所有文件状态码：${result.res.statusCode}, 删除结果：${result.res.statusMessage}`);
-        if (result.res.statusCode === 200) {
-            readDir();
+        let resultArr = [];
+        for(let i = 0 ; i < splitArr.length ; i++){
+            let result = await client.deleteMulti(splitArr[i], {
+                quiet: true
+            });
+            resultArr.push(result);
+            console.log(`删除所有文件状态码：${result.res.statusCode}, 删除结果：${result.res.statusMessage}`);
         }
+
+        for(let i = 0 ; i < resultArr.length ; i++){
+            if(resultArr[i].res.statusCode != 200){
+                return;
+            }
+        }
+      readDir();
     } catch (e) {
         console.log(`删除所有文件报错：${e}`);
     }
